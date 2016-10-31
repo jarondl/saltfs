@@ -15,16 +15,18 @@ def run():
             "default-src 'self'; frame-ancestors 'none'"),
         ('X-Frame-Options', 'DENY'),
         ('X-XSS-Protection', '1; mode=block'),
-        ('X-Content-Type-Options', 'nosniff')]
+        ('X-Content-Type-Options', 'nosniff'),
+        ]
     with urllib.request.urlopen('http://localhost/') as local_open:
         actual_headers = local_open.getheaders()
         failures = []
         for header in expected_headers:
             if header not in actual_headers:
-                failures.append('Missing or changed header - {}:{}'.format(*header))
+                failures.append(
+                    'Missing or changed header - {}:{}'.format(*header))
 
     if len(failures) > 0:
-        return Failure('nginx is serving wrong securirty headers',
+        return Failure('nginx is serving wrong security headers',
                        '\n'.join(failures))
     else:
         return Success('nginx is serving the correct security headers')
