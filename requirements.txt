@@ -1,4 +1,7 @@
 # Python modules needed for testing
 # (Travis-CI will auto-install them from this file)
-flake8 == 2.5.4
+flake8 == 3.0.4
 toml == 0.9.1  # Please ensure this is in sync with homu/init.sls
+
+-r https://raw.githubusercontent.com/marumari/http-observatory/668d425cda4c7346fe86786f19c3fd8d5c57057d/requirements.txt
+git+https://github.com/marumari/http-observatory@668d425cda4c7346fe86786f19c3fd8d5c57057d
